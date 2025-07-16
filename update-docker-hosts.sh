@@ -14,10 +14,12 @@ cat > "$SCRIPT_PATH" << 'EOF'
 #!/bin/bash
 
 HOSTS_FILE="/etc/hosts"
-START_MARK="# BEGIN DOCKER HOSTNAMES"
+START_MARK="\n# BEGIN DOCKER HOSTNAMES"
 END_MARK="# END DOCKER HOSTNAMES"
 TMP_FILE=$(mktemp)
 
+echo "" > "$TMP_FILE"
+echo "" >> "$TMP_FILE"
 echo "$START_MARK" > "$TMP_FILE"
 
 docker ps -q | while read -r CONTAINER_ID; do
